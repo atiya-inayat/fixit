@@ -10,6 +10,7 @@ const client = new MongoClient(process.env.MONGODB_URI || 'mongodb://localhost:2
 client.connect();
 
 export const auth = betterAuth({
+  baseURL: process.env.BETTER_AUTH_URL || (process.env.VERCEL ? 'https://fixit-mocha.vercel.app' : 'http://localhost:5000'),
   database: mongodbAdapter(client.db()),
   emailAndPassword: {
     enabled: true,
@@ -17,6 +18,16 @@ export const auth = betterAuth({
   trustedOrigins: [
     'http://localhost:3000',
     'http://localhost:3005',
+    'https://fixit-client-one.vercel.app',
     process.env.CLIENT_URL,
   ].filter(Boolean) as string[],
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: !!process.env.VERCEL,
+    },
+    defaultCookieAttributes: {
+      sameSite: process.env.VERCEL ? 'none' : 'lax',
+      secure: !!process.env.VERCEL,
+    },
+  },
 });

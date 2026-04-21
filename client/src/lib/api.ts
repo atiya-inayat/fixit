@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3005";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://fixit-mocha.vercel.app";
 
 const api = axios.create({
   baseURL: `${API_URL}/api`,
