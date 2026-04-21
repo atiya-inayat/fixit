@@ -21,13 +21,4 @@ export const auth = betterAuth({
     'https://fixit-client-one.vercel.app',
     process.env.CLIENT_URL,
   ].filter(Boolean) as string[],
-  advanced: {
-    crossSubDomainCookies: {
-      enabled: !!process.env.VERCEL,
-    },
-    defaultCookieAttributes: {
-      sameSite: process.env.VERCEL ? 'none' : 'lax',
-      secure: !!process.env.VERCEL,
-    },
-  },
 });
