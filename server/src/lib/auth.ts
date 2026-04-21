@@ -1,4 +1,5 @@
 import { betterAuth } from 'better-auth';
+// @ts-ignore - ESM-only type declarations, runtime resolves fine
 import { mongodbAdapter } from 'better-auth/adapters/mongodb';
 import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
