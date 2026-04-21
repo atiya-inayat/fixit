@@ -26,7 +26,7 @@ app.use("/api/issues", fundingRouter);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api/issues", verificationRouter);
 
-app.get("/health", (req, res) => {
+app.get("/health", (req: any, res: any) => {
   res.send("hello");
 });
 

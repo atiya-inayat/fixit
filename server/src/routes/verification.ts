@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { Issue } from '../models/Issue';
 import { requireAuth, AuthRequest } from '../middleware/auth';
 import Groq from 'groq-sdk';
@@ -7,7 +7,7 @@ const router = Router();
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY || '' });
 
-router.post('/:id/verify', requireAuth, async (req: AuthRequest, res) => {
+router.post('/:id/verify', requireAuth, async (req: Request, res: Response) => {
   const issue = await Issue.findById(req.params.id);
   if (!issue) return res.status(404).json({ error: 'Issue not found' });
 

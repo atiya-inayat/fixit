@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { Issue } from '../models/Issue';
 import { Transaction } from '../models/Transaction';
 
 const router = Router();
 
-router.get('/stats', async (req, res) => {
+router.get('/stats', async (req: Request, res: Response) => {
   const totalIssues = await Issue.countDocuments();
   const resolvedCount = await Issue.countDocuments({ status: 'resolved' });
   const allIssues = await Issue.find({}, 'volunteers');
